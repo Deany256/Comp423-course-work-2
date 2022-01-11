@@ -19,24 +19,23 @@ if __name__ == "__main__":
         response = input("Enter next Reading: ").upper()
         if response == "":
             break
+        count = count + 1
         if response.find("U") != -1:
             data = response.replace("U", "")
-            if data.isnumeric() == True:
+            if data.isalpha() == False:
                 data = float(data)
                 MPH.update({count: data})
                 KMPH.update({count: convert_into_KMPH(data)})
                 print(f"saving {data}MPH")
-                count = count + 1
             else:
                 print("Please enter valid Data")
         elif response.find("E") != -1:
             data = response.replace("E", "")
-            if data.isnumeric() == True:
+            if data.isalpha() == False:
                 data = float(data)
                 KMPH.update({count: data})
                 MPH.update({count: convert_into_MPH(data)})
                 print(f"saving {data}KM/H")
-                count = count + 1
             else:
                 print("Please enter valid Data")
         else:
@@ -46,9 +45,11 @@ if __name__ == "__main__":
     print()
     print(f"{count} Readings analysed")
     print(
-        f"Minimum Speed: {get_smallest_value(MPH)} MPH, {get_smallest_value(KMPH)} KM/H"
+        f"Minimum Speed: {MPH[get_smallest_value(MPH)]} MPH, {KMPH[get_smallest_value(KMPH)]} KM/H"
     )
-    print(f"Maximum Speed: {get_largest_value(MPH)} MPH,{get_largest_value(KMPH)} KM/H")
+    print(
+        f"Maximum Speed: {MPH[get_largest_value(MPH)]} MPH,{KMPH[get_largest_value(KMPH)]} KM/H"
+    )
     print(
         f"Average Speed: {get_mode_of_dictionary(MPH)} MPH, {get_mode_of_dictionary(KMPH)} KM/H"
     )
