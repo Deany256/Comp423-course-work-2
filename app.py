@@ -19,19 +19,26 @@ if __name__ == "__main__":
         response = input("Enter next Reading: ").upper()
         if response == "":
             break
-        count = count + 1
         if response.find("U") != -1:
             data = response.replace("U", "")
-            data = float(data)
-            MPH.update({count: data})
-            KMPH.update({count: convert_into_KMPH(data)})
-            print(f"saving {data}MPH")
+            if data.isnumeric() == True:
+                data = float(data)
+                MPH.update({count: data})
+                KMPH.update({count: convert_into_KMPH(data)})
+                print(f"saving {data}MPH")
+                count = count + 1
+            else:
+                print("Please enter valid Data")
         elif response.find("E") != -1:
             data = response.replace("E", "")
-            data = float(data)
-            KMPH.update({count: data})
-            MPH.update({count: convert_into_MPH(data)})
-            print(f"saving {data}KM/H")
+            if data.isnumeric() == True:
+                data = float(data)
+                KMPH.update({count: data})
+                MPH.update({count: convert_into_MPH(data)})
+                print(f"saving {data}KM/H")
+                count = count + 1
+            else:
+                print("Please enter valid Data")
         else:
             print("please enter valid data")
     print()
