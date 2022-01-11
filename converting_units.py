@@ -1,35 +1,65 @@
-from typing import List
+from typing import Dict, List
 
 
-def converting_to_KMPH(mph: List[float], kmph: List[float]) -> float:
-
-    """Multiply a list of values by a set value
-
-    Args:
-        mph (List[float]): Non-empty list of numbers
-        kmph (List[float]): an empty list
-
-    Returns:
-        float: List of numbers
-    """
-    for i in range(len(mph)):
-        formula = mph[i] * 1.609
-        kmph.append(round(formula, 1))
-    return kmph
-
-
-def converting_to_MPH(kmph: List[float], mph: List[float]) -> float:
-
-    """Multiply a list of values by a set value
+def convert_into_KMPH(data: float) -> float:
+    """Manipulates the data so it can be displayed as MPH
 
     Args:
-        kmph (List[float]): Non-empty list of numbers
-        mph (List[float]): an empty list
+        data (float): None-empty variable
 
     Returns:
-        float: List of numbers
+        float: Value that can be represented as MPH to one decimal place
     """
-    for i in range(len(kmph)):
-        formula = kmph[i] / 1.609
-        mph.append(round(formula, 1))
-    return mph
+    formula = data * 1.609
+    return round(formula, 1)
+
+
+def convert_into_MPH(data: float) -> float:
+    """Manipulates the data so it can be displayed as KM/H
+
+    Args:
+        data (float): None-empty variable
+
+    Returns:
+        float: Value that can be represented as KM/H to one decimal place
+    """
+    formula = data / 1.609
+    return round(formula, 1)
+
+
+def get_smallest_value(values: Dict[int, float]) -> int:
+    """Gets the smallest float value within a dictionary
+
+    Args:
+        values (Dict[int, float]): Dictionary full of values
+
+    Returns:
+        int: Returns the Key of the lowest value within the Dictionary
+    """
+    return min(values, key=values.get)
+
+
+def get_largest_value(values: Dict[int, float]) -> int:
+    """Gets the largest float value within a dictionary
+
+    Args:
+        values (Dict[int, float]): Dictionary full of values
+
+    Returns:
+        int: Returns the Key of the largest value within the Dictionary
+    """
+    return max(values, key=values.get)
+
+
+def get_mode_of_dictionary(possible_values: Dict[int, float]) -> float:
+    """Calculates the average of all values in the dictionary
+
+    Args:
+        values (Dict[int,float]): None-empty Dictionary
+
+    Returns:
+        float: A float average of the dictionary's values to one decimal place
+    """
+    all_values = list(possible_values.values())
+    average = round(sum(all_values) / len(all_values), 1)
+    return average
